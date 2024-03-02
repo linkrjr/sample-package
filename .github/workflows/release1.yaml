@@ -1,5 +1,5 @@
-name: Release1
-
+name: Tag/Release on Push Action
+# https://github.com/marketplace/actions/tag-release-on-push-action
 on:
   workflow_dispatch:
   # push:
