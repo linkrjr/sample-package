@@ -18,4 +18,5 @@ jobs:
           # (Optional) Path to changelog.
           # changelog: CHANGELOG.md
           # (Required) GitHub token for creating GitHub Releases.
+          branch: main
           token: ${{ secrets.GITHUB_TOKEN }}
