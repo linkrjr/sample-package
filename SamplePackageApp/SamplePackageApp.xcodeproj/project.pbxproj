@@ -3,16 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B35E2B22B932ADA00E820B8 /* SamplePackage in Frameworks */ = {isa = PBXBuildFile; productRef = 8B35E2B12B932ADA00E820B8 /* SamplePackage */; };
 		8BB76BB72B9320FB007E23A3 /* SamplePackageAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB76BB62B9320FB007E23A3 /* SamplePackageAppApp.swift */; };
 		8BB76BB92B9320FB007E23A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB76BB82B9320FB007E23A3 /* ContentView.swift */; };
 		8BB76BBB2B9320FC007E23A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BB76BBA2B9320FC007E23A3 /* Assets.xcassets */; };
 		8BB76BBE2B9320FC007E23A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BB76BBD2B9320FC007E23A3 /* Preview Assets.xcassets */; };
 		8BB76BC92B932974007E23A3 /* SamplePackage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB76BC82B932974007E23A3 /* SamplePackage */; };
+		8BDB0CB82B932FB3004806B3 /* SamplePackage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDB0CB72B932FB3004806B3 /* SamplePackage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BB76BC92B932974007E23A3 /* SamplePackage in Frameworks */,
-				8B35E2B22B932ADA00E820B8 /* SamplePackage in Frameworks */,
+				8BDB0CB82B932FB3004806B3 /* SamplePackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +89,7 @@
 			name = SamplePackageApp;
 			packageProductDependencies = (
 				8BB76BC82B932974007E23A3 /* SamplePackage */,
-				8B35E2B12B932ADA00E820B8 /* SamplePackage */,
+				8BDB0CB72B932FB3004806B3 /* SamplePackage */,
 			);
 			productName = SamplePackageApp;
 			productReference = 8BB76BB32B9320FB007E23A3 /* SamplePackageApp.app */;
@@ -120,7 +120,7 @@
 			);
 			mainGroup = 8BB76BAA2B9320FB007E23A3;
 			packageReferences = (
-				8B35E2B02B932ADA00E820B8 /* XCRemoteSwiftPackageReference "sample-package" */,
+				8BDB0CB62B932FB3004806B3 /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = 8BB76BB42B9320FB007E23A3 /* Products */;
 			projectDirPath = "";
@@ -356,24 +356,19 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		8B35E2B02B932ADA00E820B8 /* XCRemoteSwiftPackageReference "sample-package" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/linkrjr/sample-package.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		8BDB0CB62B932FB3004806B3 /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8B35E2B12B932ADA00E820B8 /* SamplePackage */ = {
+		8BB76BC82B932974007E23A3 /* SamplePackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B35E2B02B932ADA00E820B8 /* XCRemoteSwiftPackageReference "sample-package" */;
 			productName = SamplePackage;
 		};
-		8BB76BC82B932974007E23A3 /* SamplePackage */ = {
+		8BDB0CB72B932FB3004806B3 /* SamplePackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SamplePackage;
 		};

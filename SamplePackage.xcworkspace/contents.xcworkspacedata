@@ -1,4 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:Package.swift">
+   </FileRef>
+   <Group
+      location = "group:SamplePackage"
+      name = "SamplePackage">
+      <Group
+         location = "group:Sources"
+         name = "Sources">
+         <Group
+            location = "group:SamplePackage"
+            name = "SamplePackage">
+            <FileRef
+               location = "group:SamplePackage.swift">
+            </FileRef>
+         </Group>
+      </Group>
+   </Group>
+   <Group
+      location = "group:SamplePackageApp"
+      name = "SamplePackageApp">
+      <Group
+         location = "group:SamplePackageApp"
+         name = "SamplePackageApp">
+         <Group
+            location = "group:Assets.xcassets"
+            name = "Assets.xcassets">
+            <Group
+               location = "group:AppIcon.appiconset"
+               name = "AppIcon.appiconset">
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:AccentColor.colorset"
+               name = "AccentColor.colorset">
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+            <FileRef
+               location = "group:Contents.json">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Preview Content"
+            name = "Preview Content">
+            <Group
+               location = "group:Preview Assets.xcassets"
+               name = "Preview Assets.xcassets">
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+         </Group>
+         <FileRef
+            location = "group:SamplePackageAppApp.swift">
+         </FileRef>
+         <FileRef
+            location = "group:ContentView.swift">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:SamplePackageApp.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>

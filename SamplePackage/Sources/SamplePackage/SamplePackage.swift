@@ -2,5 +2,5 @@
 // https://docs.swift.org/swift-book
 
 public class SamplePackage {
-	public static var version = "1.0.0"
+	public static var version = "2.0.0"
 }
