@@ -11,7 +11,7 @@ import SamplePackage
 struct ContentView: View {
     var body: some View {
         VStack {
-					Text("Version: \(SamplePackage.version) - some code")
+					Text("Version: \(SamplePackage.version)")
         }
         .padding()
     }
