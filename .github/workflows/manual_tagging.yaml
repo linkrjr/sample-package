@@ -7,6 +7,9 @@ on:
 
 jobs:
   release:
+    permissions:
+      contents: write
+      pull-requests: read
     runs-on: ubuntu-latest
     if: startsWith(github.event.pull_request.title, 'Release:')
     steps:

@@ -15,6 +15,9 @@ on:
 
 jobs:
   version:
+    permissions:
+      contents: write
+      pull-requests: read
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
