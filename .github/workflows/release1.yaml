@@ -1,9 +1,10 @@
-name: Release1
-
+name: Tag/Release on Push Action
+# https://github.com/marketplace/actions/tag-release-on-push-action
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
 jobs:
   release-on-push:
     permissions:
