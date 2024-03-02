@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import SamplePackage
 
 struct ContentView: View {
     var body: some View {
         VStack {
-            Text("Hello, world!")
+					Text("Version: \(SamplePackage.version)")
         }
         .padding()
     }

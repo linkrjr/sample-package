@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "sample-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/linkrjr/sample-package.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "73938cd17047bf51073e14c3a78526d167b9aba3"
+      }
+    }
+  ],
+  "version" : 2
+}
