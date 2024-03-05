@@ -16,11 +16,6 @@ on:
     branches:
       - version-bump
 
-  push:
-    branches:
-      - version-bump
-        
-
 jobs:
   release:
     runs-on: ubuntu-latest
