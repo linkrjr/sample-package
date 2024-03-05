@@ -1,5 +1,7 @@
 #! /bin/sh
 
-value=$(<../VERSION)
+echo "$(pwd)"
+
+value=$(<VERSION)
 
 echo $value
