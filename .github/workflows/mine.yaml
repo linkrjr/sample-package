@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: My Script
-        run: ./scripts/create-release.sh > $VERSION
+        run: ./scripts/create-release.sh >> $VERSION
       - name: echo version
         run: echo "$VERSION"
 
