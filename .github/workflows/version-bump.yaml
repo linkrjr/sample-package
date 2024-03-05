@@ -29,7 +29,7 @@ jobs:
       - name: Retrieve New Version
         run: bash ./.ci_steps/bump.sh ${{inputs.bump-mode}}
         id: bump
-
+      
       - name: 'Checkout version-bump branch'
         id: current_branch
         run: |

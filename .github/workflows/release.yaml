@@ -12,9 +12,11 @@ on:
           - prerelease
           - release
   
-  push:
-    branches:
-      - version-bump
+  release:
+    types:
+      - published
+      - prereleased
+      - unpublished
 
 jobs:
   release:
@@ -24,11 +26,14 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+
       - name : Retrieve Version Name
         run: echo "version=$(<VERSION)" >> $GITHUB_OUTPUT
         id: version
+
       - name: Print Version Name
         run: echo "release version ${{steps.version.outputs.VERSION}}"
+
       - name: Create GitHub Tag and Release
         uses: ncipollo/release-action@v1
         with:
