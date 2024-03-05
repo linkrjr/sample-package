@@ -25,6 +25,10 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: print github.ref
+        run: |
+          echo ${{github.ref}}
+          
       - name: Check out repository code
         uses: actions/checkout@v4
 
