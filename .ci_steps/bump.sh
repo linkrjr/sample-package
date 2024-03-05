@@ -24,7 +24,7 @@ if [ -n "$1" ]; then
   BUMP_MODE=$1
 fi
 
-OLD_VERSION=$(./gradlew -q printVersionName)
+OLD_VERSION=$(<VERSION)
 NEW_VERSION="-"
 
 bump $BUMP_MODE $OLD_VERSION
