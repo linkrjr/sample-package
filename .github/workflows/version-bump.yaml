@@ -25,13 +25,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Bump version
-        uses: remorses/bump-version@js
-        with:
-            version_file: ./VERSION
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Retrieve New Version
         run: bash ./.ci_steps/bump.sh ${{inputs.bump-mode}}
         id: bump
