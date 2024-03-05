@@ -24,8 +24,8 @@ jobs:
     steps:
       - name: print github.ref
         run: |
-          echo ${{github.ref}}
-          echo ${{github.head_ref}}
+          echo "github.ref: ${{github.ref}}"
+          echo "github.head_ref: ${{github.head_ref}}"
           
       - name: Check out repository code
         uses: actions/checkout@v4
