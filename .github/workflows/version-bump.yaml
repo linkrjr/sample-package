@@ -12,8 +12,8 @@ on:
           - minor
           - major
 
-  push:
-    branches: [main]
+  # push:
+  #   branches: [main]
 
 jobs:
   bump-version:
@@ -24,22 +24,48 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+
       - name: Retrieve New Version
         run: bash ./.ci_steps/bump.sh ${{inputs.bump-mode}}
         id: bump
+
       - name: 'Checkout version-bump branch'
         run: |
           git fetch origin version-bump
           git checkout version-bump
+        
       - name: Print Current Branch
-        run: echo "$(git branch --show-current)"
+        id: current_branch
+        run: echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
+  
+      - name: Verify Current Branch
+        if: ${{steps.current_branch.outputs.current_branch != 'version-bump'}}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Current branch is not version-bump')
+
       - name: Update Version to version-bump Branch
-        run: sh ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
         id: update
+        run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
+        
       - name: Print Bump Results
         run: |
           echo "New Version: ${{steps.update.outputs.CURRENT_VERSION}}"
 
+      - name: "Complex Configuration"
+        id: build_changelog
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: mikepenz/release-changelog-builder-action@{latest-release}
+        with:
+          configuration: "configuration_complex.json"
+          owner: "mikepenz"
+          repo: "release-changelog-builder-action"
+          ignorePreReleases: "false"
+          fromTag: ${{steps.bump.outputs.OLD_VERSION}}
+          toTag: ${{steps.bump.outputs.NEW_VERSION}}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
       # - name: Create pull request
       #   id: create_pr
       #   uses: peter-evans/create-pull-request@v5
