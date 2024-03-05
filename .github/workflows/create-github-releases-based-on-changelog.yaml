@@ -1,12 +1,23 @@
-name: Release
+name: create-github-releases-based-on-changelog
 # https://github.com/marketplace/actions/create-github-releases-based-on-changelog
 permissions:
   contents: write
 
 on:
-  push:
-    tags:
-      - "[0-9]+.*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version name'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+        - major
+        - minor
+        - patch
+  # push:
+  #   tags:
+  #     - "[0-9]+.*"
 
 jobs:
   create-release:
