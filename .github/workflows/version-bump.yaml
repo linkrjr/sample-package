@@ -48,18 +48,28 @@ jobs:
       - name: Update Version to version-bump Branch
         id: update
         run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
-        
+
       - name: Print Bump Results
         run: |
           echo "New Version: ${{steps.update.outputs.CURRENT_VERSION}}"
-      
-      - name: Update CHANGELOG
-        id: changelog
-        uses: requarks/changelog-action@v1
+
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fromTag: '0.1.20'
-          toTag: '0.1.17'
+          branch: version-bump
+          commit_message: "Bump version from ${{steps.bump.outputs.OLD_VERSION}} to ${{steps.bump.outputs.NEW_VERSION}} [skip ci]"
+          commit_user_name: ${{GITHUB_ACTOR}}
+          commit_user_email: "${{GITHUB_ACTOR}}@users.noreply.github.com"
+          # commit_author
+          file_pattern: VERSION
+      
+      # - name: Update CHANGELOG
+      #   id: changelog
+      #   uses: requarks/changelog-action@v1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     fromTag: '0.1.20'
+      #     toTag: '0.1.17'
 
       # - name: Changelog
       #   uses: ncipollo/release-action@v1.12.0
@@ -68,12 +78,9 @@ jobs:
       #     body: ${{ steps.changelog.outputs.changes }}
       #     token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit Changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: version-bump
-          commit_message: 'Update to ${{ github.ref_name }} [skip ci]'
-          file_pattern: CHANGELOG.md VERSION
+
+
+
 
       # - name: Create pull request
       #   id: create_pr
