@@ -47,5 +47,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: version-bump
           title: "Release: ${{steps.bump.outputs.NEW_VERSION}} Pull Request"
+          commit-message: "Release: ${{steps.bump.outputs.NEW_VERSION}} Pull Request"
+          body: ""
           base: main
   
