@@ -31,7 +31,7 @@ jobs:
           ${{ inputs.release-type }}: true
           generateReleaseNotes: true
           tag: "${{steps.version.outputs.VERSION}}"
-          commit: "master"
+          commit: "main"
   # publish-aar:
   #   needs: git-release
   #   if: ${{inputs.release-type != 'draft'}}
