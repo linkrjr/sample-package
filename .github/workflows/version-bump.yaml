@@ -11,11 +11,6 @@ on:
           - patch
           - minor
           - major
-      should-create-pr:
-        description: 'Wanna create PR?'
-        required: true
-        default: false
-        type: boolean
 
   push:
     branches: [main]
@@ -54,17 +49,9 @@ jobs:
           title: "Release: ${{steps.bump.outputs.NEW_VERSION}}"
           commit-message: "Release: ${{steps.bump.outputs.NEW_VERSION}}"
           body: ""
-          base: main  
-
-  create-pr:
-    needs: bump-version
-    if: ${{inputs.should-create-pr}}
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:            
-      - name: Create pull request        
+          base: main
+            
+      - name: Create pull request
         id: create_pr
         uses: peter-evans/create-pull-request@v5
         with:
@@ -73,4 +60,5 @@ jobs:
           title: "Release: ${{steps.bump.outputs.NEW_VERSION}}"
           commit-message: "Release: ${{steps.bump.outputs.NEW_VERSION}}"
           body: ""
-          base: main  
+          base: main
+  
