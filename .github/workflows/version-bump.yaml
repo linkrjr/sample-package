@@ -59,7 +59,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fromTag: 'refs/tags/0.1.17'
-          toTag: 'refs/tags/${{steps.update.outputs.CURRENT_VERSION}}'
+          toTag: 'refs/tags/0.1.20'
 
       # - name: Changelog
       #   uses: ncipollo/release-action@v1.12.0
