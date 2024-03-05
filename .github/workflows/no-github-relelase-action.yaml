@@ -1,5 +1,5 @@
-name: Publish release
-
+name: Github-Release-Action
+# https://github.com/elgohr/Github-Release-Action
 on: 
   push:
     tags:

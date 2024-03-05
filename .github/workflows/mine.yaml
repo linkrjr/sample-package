@@ -1,0 +1,23 @@
+name: My Version
+
+on: 
+  workflow_dispatch:
+  # push:
+  #   tags:
+  #     - '*.*.*'
+
+jobs:
+  build:
+    permissions:
+      contents: write
+      pull-requests: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: My Script
+        run: ./scripts/create-release.sh > $VERSION
+      - name: echo version
+        run: echo "$VERSION"
+
+
+
