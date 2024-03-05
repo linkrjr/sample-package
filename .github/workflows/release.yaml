@@ -11,16 +11,22 @@ on:
           - draft
           - prerelease
           - release
+
+  pull_request:
+    types:
+      - closed
   
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: startsWith(github.head_ref, 'version-bump')
     permissions:
       contents: write
     steps:
       - name: print github.ref
         run: |
           echo ${{github.ref}}
+          echo ${{github.head_ref}}
           
       - name: Check out repository code
         uses: actions/checkout@v4
