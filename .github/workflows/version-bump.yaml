@@ -12,8 +12,8 @@ on:
           - minor
           - major
 
-  push:
-    branches: [main]
+  # push:
+  #   branches: [main]
 
 jobs:
   bump-version:
@@ -34,6 +34,10 @@ jobs:
       - name: Print Bump Results
         run: |
           echo "New Version: ${{steps.update.outputs.CURRENT_VERSION}}"
+      - name: Run Changelog CI
+        uses: saadmk11/changelog-ci@v1.1.2
+        with:
+          release_version: "${{steps.update.outputs.CURRENT_VERSION}}"
 
       # - name: Create pull request
       #   id: create_pr
