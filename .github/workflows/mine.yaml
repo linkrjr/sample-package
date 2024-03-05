@@ -29,7 +29,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/${{ steps.new_version.outputs.version}}',
+              ref: refs/tags/${{steps.new_version.outputs.version}},
               sha: context.sha
             })
 
