@@ -46,12 +46,11 @@ jobs:
             core.setFailed('Current branch is not version-bump')
 
       - name: Update Version to version-bump Branch
-        id: update
-        run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
+        run: echo "${{steps.bump.outputs.NEW_VERSION}}" > VERSION 
 
       - name: Print Bump Results
         run: |
-          echo "New Version: ${{steps.update.outputs.CURRENT_VERSION}}"
+          echo "New Version: ${{steps.bump.outputs.NEW_VERSION}}"
 
       - name: Commit Changes
         uses: stefanzweifel/git-auto-commit-action@v4
@@ -60,7 +59,6 @@ jobs:
           commit_message: "Bump version from ${{steps.bump.outputs.OLD_VERSION}} to ${{steps.bump.outputs.NEW_VERSION}} [skip ci]"
           commit_user_name: ${{github.actor}}
           commit_user_email: "${{github.actor}}@users.noreply.github.com"
-          # commit_author
           file_pattern: VERSION
       
       # - name: Update CHANGELOG
