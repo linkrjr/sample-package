@@ -34,9 +34,8 @@ jobs:
           git fetch origin version-bump
           git checkout version-bump
         
-      - name: Print Current Branch
+      - run: echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
         id: current_branch
-        run: echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
   
       - name: Verify Current Branch
         if: ${{steps.current_branch.outputs.current_branch != 'version-bump'}}
