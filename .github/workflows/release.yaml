@@ -12,11 +12,11 @@ on:
           - prerelease
           - release
   
-  release:
+  pull_request:
+    branches:
+      - version-bump
     types:
-      - published
-      - prereleased
-      - unpublished
+      - closed
 
 jobs:
   release:
