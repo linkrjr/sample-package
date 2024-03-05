@@ -12,8 +12,8 @@ on:
           - minor
           - major
 
-  # push:
-  #   branches: [main]
+  push:
+    branches: [main]
 
 jobs:
   bump-version:
