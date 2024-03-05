@@ -1,5 +1,5 @@
 #! /bin/sh
 
-value = $(<)
+value = $(<GITHUB_WORKSPACE/VERSION)
 
 echo "$value"
