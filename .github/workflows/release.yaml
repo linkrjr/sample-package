@@ -12,13 +12,6 @@ on:
           - prerelease
           - release
   
-  pull_request:
-    branches:
-      - version-bump
-      - main
-    types:
-      - closed
-
 jobs:
   release:
     runs-on: ubuntu-latest
