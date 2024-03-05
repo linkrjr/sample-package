@@ -33,8 +33,18 @@ jobs:
       - name: Print Current Branch
         run: echo "$(git branch --show-current)"
       - name: Update Version to version-bump Branch
-        run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
+        run: sh ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
         id: update
       - name: Print Bump Results
         run: |
           echo "New Version: ${{steps.update.outputs.CURRENT_VERSION}}"
+
+      - name: Create pull request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: version-bump
+          title: "Release: ${{steps.bump.outputs.NEW_VERSION}} Pull Request"
+          base: main
+  
