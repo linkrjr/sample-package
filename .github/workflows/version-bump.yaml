@@ -13,7 +13,8 @@ on:
           - major
 
   push:
-    branches: [main]
+    branches: 
+      - main
 
 jobs:
   bump-version:

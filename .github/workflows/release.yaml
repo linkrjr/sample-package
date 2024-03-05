@@ -11,6 +11,10 @@ on:
           - draft
           - prerelease
           - release
+  
+  push:
+    branches:
+      - version-bump
 
   push:
     branches:
