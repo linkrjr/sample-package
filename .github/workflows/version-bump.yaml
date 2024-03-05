@@ -34,8 +34,9 @@ jobs:
           git fetch origin version-bump
           git checkout version-bump
         
-      - run: echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
+      - name: Fetch Current Branch
         id: current_branch
+        run: echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
   
       - name: Verify Current Branch
         if: ${{steps.current_branch.outputs.current_branch != 'version-bump'}}
@@ -52,10 +53,13 @@ jobs:
         run: |
           echo "New Version: ${{steps.update.outputs.CURRENT_VERSION}}"
 
-      - name: "✏️ Generate release changelog"
-        uses: heinrichreimer/action-github-changelog-generator@v2.3
+      - uses: BobAnkh/auto-generate-changelog@v1.2.5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}           
+          ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PATH: 'CHANGELOG.md'
+          COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
+          TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'      
+          BRANCH: 'version-bump'
       # - name: Create pull request
       #   id: create_pr
       #   uses: peter-evans/create-pull-request@v5
