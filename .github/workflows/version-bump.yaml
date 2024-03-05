@@ -52,14 +52,28 @@ jobs:
       - name: Print Bump Results
         run: |
           echo "New Version: ${{steps.update.outputs.CURRENT_VERSION}}"
-
-      - uses: BobAnkh/auto-generate-changelog@v1.2.5
+      
+      - name: Update CHANGELOG
+        id: changelog
+        uses: requarks/changelog-action@v1
         with:
-          ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PATH: 'CHANGELOG.md'
-          COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
-          TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'      
-          BRANCH: 'version-bump'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: 'refs/tags/${{steps.update.outputs.CURRENT_VERSION}}'
+
+      # - name: Changelog
+      #   uses: ncipollo/release-action@v1.12.0
+      #   with:
+      #     name: 'refs/tags/0.1.17'
+      #     body: ${{ steps.changelog.outputs.changes }}
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: version-bump
+          commit_message: 'Update to ${{ github.ref_name }} [skip ci]'
+          file_pattern: CHANGELOG.md VERSION
+
       # - name: Create pull request
       #   id: create_pr
       #   uses: peter-evans/create-pull-request@v5
