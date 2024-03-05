@@ -53,15 +53,10 @@ jobs:
         run: |
           echo "New Version: ${{steps.update.outputs.CURRENT_VERSION}}"
 
-      - name: "Complex Configuration"
-        id: build_changelog
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: mikepenz/release-changelog-builder-action@v4
+      - name: "✏️ Generate release changelog"
+        uses: heinrichreimer/action-github-changelog-generator@v2.3
         with:
-          fromTag: ${{steps.bump.outputs.OLD_VERSION}}
-          toTag: ${{steps.bump.outputs.NEW_VERSION}}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          
+          token: ${{ secrets.GITHUB_TOKEN }}           
       # - name: Create pull request
       #   id: create_pr
       #   uses: peter-evans/create-pull-request@v5
