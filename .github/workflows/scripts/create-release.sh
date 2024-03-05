@@ -1,5 +1,7 @@
 #! /bin/sh
 
-value = $(<GITHUB_WORKSPACE/VERSION)
+GITHUB_WORKSPACE=../../..
 
-echo "$value"
+value=$(<$GITHUB_WORKSPACE/VERSION)
+
+echo $value
