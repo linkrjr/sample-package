@@ -58,7 +58,8 @@ jobs:
         uses: requarks/changelog-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: 'refs/tags/${{steps.update.outputs.CURRENT_VERSION}}'
+          fromTag: 'refs/tags/0.1.17'
+          toTag: 'refs/tags/${{steps.update.outputs.CURRENT_VERSION}}'
 
       # - name: Changelog
       #   uses: ncipollo/release-action@v1.12.0
