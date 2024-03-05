@@ -12,6 +12,11 @@ on:
           - prerelease
           - release
 
+  push:
+    branches:
+      - version-bump
+        
+
 jobs:
   release:
     runs-on: ubuntu-latest
