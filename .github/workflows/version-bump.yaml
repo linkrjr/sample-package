@@ -26,11 +26,18 @@ jobs:
         uses: actions/checkout@v4
         with: 
           ref: 'version-bump'
+
+      - name: Retrieve New Version
+        run: bash ./.ci_steps/bump.sh ${{inputs.bump-mode}}
+        id: bump
+  
       - name: Print Current Branch
         run: echo "$(git branch --show-current)"
+
       - name: Update Version to version-bump Branch
-        run: sh ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
+        run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
         id: update
+        
       - name: Print Bump Results
         run: |
           echo "New Version: ${{steps.update.outputs.CURRENT_VERSION}}"
