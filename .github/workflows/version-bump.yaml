@@ -38,17 +38,16 @@ jobs:
         id: current_branch
         run: echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
   
-      - name: Is Current Branch version-bump
-        if: ${{steps.current_branch.outputs.current_branch != 'blah'}}
+      - name: Verify Current Branch
+        if: ${{steps.current_branch.outputs.current_branch != 'version-bump'}}
         uses: actions/github-script@v3
         with:
           script: |
             core.setFailed('Current branch is not version-bump')
 
-  
       - name: Update Version to version-bump Branch
-        run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
         id: update
+        run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
         
       - name: Print Bump Results
         run: |
