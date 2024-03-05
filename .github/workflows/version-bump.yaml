@@ -24,13 +24,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Retrieve New Version
-        run: bash ./.ci_steps/bump.sh ${{inputs.bump-mode}}
-        id: bump
-      - name: 'Checkout version-bump branch'
-        run: |
-          git fetch origin version-bump
-          git checkout version-bump
+        with: 
+          ref: 'version-bump'
       - name: Print Current Branch
         run: echo "$(git branch --show-current)"
       - name: Update Version to version-bump Branch
