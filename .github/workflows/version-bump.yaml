@@ -1,9 +1,9 @@
-name: Bump Version
+name: Update Version
 on:
   workflow_dispatch:
     inputs:
-      bump-mode:
-        description: 'Select bump mode'
+      release-mode:
+        description: 'Select release mode'
         required: true
         default: 'patch'
         type: choice
@@ -13,8 +13,8 @@ on:
           - major
 
   push:
-    branches: 
-      - main
+    branches:
+      - master
 
 jobs:
   bump-version:
@@ -27,45 +27,32 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Retrieve New Version
-        run: bash ./.ci_steps/bump.sh ${{inputs.bump-mode}}
+        run: bash ./.ci_steps/bump.sh ${{inputs.release-mode}}
         id: bump
-      
-      - name: Fetch branch version-bump
-        id: fetch_branch
-        run: |
-          git fetch origin version-bump  
-      
-      - name: Create branch version-bump if does not exist
-        if: ${{ failure() && steps.fetch_branch.conclusion == 'failure' }}
-        run: |
-          git checkout -b version-bump
 
       - name: 'Checkout version-bump branch'
         id: current_branch
         run: |
+          git fetch origin version-bump
           git checkout version-bump
           echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
-          
-      - name: Verify Current Branch
-        if: ${{steps.current_branch.outputs.current_branch != 'version-bump'}}
-        uses: actions/github-script@v3
-        with:
-          script: |
-            core.setFailed('Current branch is not version-bump')
+
+      # - name: Update Version to version-bump Branch
+      #   run: echo "${{steps.bump.outputs.NEW_VERSION}}" > VERSION
 
       - name: Update Version to version-bump Branch
-        run: echo "${{steps.bump.outputs.NEW_VERSION}}" > VERSION 
+        run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
+        id: update
 
       - name: Print Bump Results
         run: |
           echo "New Version: ${{steps.bump.outputs.NEW_VERSION}}"
 
-      - name: Commit Changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: version-bump
-          commit_message: "Bump version from ${{steps.bump.outputs.OLD_VERSION}} to ${{steps.bump.outputs.NEW_VERSION}} [skip ci]"
-          commit_user_name: ${{github.actor}}
-          commit_user_email: "${{github.actor}}@users.noreply.github.com"
-          file_pattern: VERSION
-    
+      # - name: Commit Changes
+      #   uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     branch: version-bump
+      #     commit_message: "Bump version from ${{steps.bump.outputs.OLD_VERSION}} to ${{steps.bump.outputs.NEW_VERSION}} [skip ci]"
+      #     commit_user_name: ${{github.actor}}
+      #     commit_user_email: "${{github.actor}}@users.noreply.github.com"
+      #     file_pattern: VERSION
