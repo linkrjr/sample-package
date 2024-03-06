@@ -37,22 +37,18 @@ jobs:
           git checkout version-bump
           echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
 
-      # - name: Update Version to version-bump Branch
-      #   run: echo "${{steps.bump.outputs.NEW_VERSION}}" > VERSION
-
       - name: Update Version to version-bump Branch
-        run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
-        id: update
+        run: echo "${{steps.bump.outputs.NEW_VERSION}}" > VERSION
 
       - name: Print Bump Results
         run: |
           echo "New Version: ${{steps.bump.outputs.NEW_VERSION}}"
 
-      # - name: Commit Changes
-      #   uses: stefanzweifel/git-auto-commit-action@v4
-      #   with:
-      #     branch: version-bump
-      #     commit_message: "Bump version from ${{steps.bump.outputs.OLD_VERSION}} to ${{steps.bump.outputs.NEW_VERSION}} [skip ci]"
-      #     commit_user_name: ${{github.actor}}
-      #     commit_user_email: "${{github.actor}}@users.noreply.github.com"
-      #     file_pattern: VERSION
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: version-bump
+          commit_message: "Bump version from ${{steps.bump.outputs.OLD_VERSION}} to ${{steps.bump.outputs.NEW_VERSION}} [skip ci]"
+          commit_user_name: ${{github.actor}}
+          commit_user_email: "${{github.actor}}@users.noreply.github.com"
+          file_pattern: VERSION
