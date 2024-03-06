@@ -30,10 +30,19 @@ jobs:
         run: bash ./.ci_steps/bump.sh ${{inputs.bump-mode}}
         id: bump
       
+      - name: Fetch branch version-bump
+        id: fetch_branch
+        run: |
+          git fetch origin version-bump  
+      
+      - name: Create branch version-bump if does not exist
+        if: ${{ failure() && steps.fetch_branch.conclusion == 'failure' }}
+        run: |
+          git checkout -d version-bump
+
       - name: 'Checkout version-bump branch'
         id: current_branch
         run: |
-          git fetch origin version-bump
           git checkout version-bump
           echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
           
