@@ -21,3 +21,4 @@ jobs:
           skip-version-file: true
           skip-bump: true
           fallback-version: "head"
+          tag-prefix: ''
