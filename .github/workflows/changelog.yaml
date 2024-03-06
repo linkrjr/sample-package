@@ -1,0 +1,21 @@
+name: Changelog
+
+on:
+  workflow_dispatch:
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      
+      - name: Generate Changelog
+        run: TriPSs/conventional-changelog-action@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          skip-tag: true
+          output-file: CHANGELOG.md
+          git-branch: version-bump
+          skip-version-file: true
+          skip-bump: true
