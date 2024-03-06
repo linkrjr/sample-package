@@ -54,7 +54,7 @@ jobs:
           git-branch: version-bump
           skip-version-file: true
           skip-bump: true
-          fallback-version: "main"
+          fallback-version: "${{steps.bump.outputs.NEW_VERSION}}"
           tag-prefix: ''
 
       - name: Commit Changes
