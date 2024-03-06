@@ -15,7 +15,9 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           skip-tag: true
+          skip-on-empty: false
           output-file: CHANGELOG.md
           git-branch: version-bump
           skip-version-file: true
           skip-bump: true
+          fallback-version: "head"
