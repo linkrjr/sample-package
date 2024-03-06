@@ -29,9 +29,7 @@ jobs:
       - name: Retrieve New Version
         run: bash ./.ci_steps/bump.sh ${{inputs.bump-mode}}
         id: bump
-    
-      - name: 
-
+      
       - name: 'Checkout version-bump branch'
         id: current_branch
         run: |
@@ -60,7 +58,5 @@ jobs:
           commit_message: "Bump version from ${{steps.bump.outputs.OLD_VERSION}} to ${{steps.bump.outputs.NEW_VERSION}} [skip ci]"
           commit_user_name: ${{github.actor}}
           commit_user_email: "${{github.actor}}@users.noreply.github.com"
-          skip_checkout: true
-          skip_fetch: true
           file_pattern: VERSION
     
