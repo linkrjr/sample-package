@@ -9,16 +9,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      
-      - name: Generate Changelog
-        uses: TriPSs/conventional-changelog-action@v5
+        
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v4.3.1
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          skip-tag: true
-          skip-on-empty: false
-          output-file: CHANGELOG.md
-          git-branch: version-bump
-          skip-version-file: true
-          skip-bump: true
-          fallback-version: "main"
-          tag-prefix: ''
+          myToken: ${{ secrets.GITHUB_TOKEN }}
+          head-ref: 'main'
+          base-ref: '0.1.48'
