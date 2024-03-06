@@ -20,5 +20,5 @@ jobs:
           git-branch: version-bump
           skip-version-file: true
           skip-bump: true
-          fallback-version: "head"
+          fallback-version: "main"
           tag-prefix: ''
