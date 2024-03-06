@@ -57,6 +57,7 @@ jobs:
           fallback-version: "main"
           tag-prefix: ''
           create-summary: true
+          skip-commit: true
           
 
       - name: Commit Changes
