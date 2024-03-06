@@ -54,8 +54,10 @@ jobs:
           git-branch: version-bump
           skip-version-file: true
           skip-bump: true
-          fallback-version: "${{steps.bump.outputs.NEW_VERSION}}"
+          fallback-version: "main"
           tag-prefix: ''
+          create-summary: true
+          
 
       - name: Commit Changes
         uses: stefanzweifel/git-auto-commit-action@v4
