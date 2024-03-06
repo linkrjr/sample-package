@@ -66,4 +66,4 @@ jobs:
           commit_message: "Bump version from ${{steps.bump.outputs.OLD_VERSION}} to ${{steps.bump.outputs.NEW_VERSION}} [skip ci]"
           commit_user_name: ${{github.actor}}
           commit_user_email: "${{github.actor}}@users.noreply.github.com"
-          file_pattern: VERSION CHANGELOG.md
+          file_pattern: VERSION
