@@ -44,6 +44,19 @@ jobs:
         run: |
           echo "New Version: ${{steps.bump.outputs.NEW_VERSION}}"
 
+      - name: Generate Changelog
+        uses: TriPSs/conventional-changelog-action@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          skip-tag: true
+          skip-on-empty: false
+          output-file: CHANGELOG.md
+          git-branch: version-bump
+          skip-version-file: true
+          skip-bump: true
+          fallback-version: "main"
+          tag-prefix: ''
+
       - name: Commit Changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -51,4 +64,4 @@ jobs:
           commit_message: "Bump version from ${{steps.bump.outputs.OLD_VERSION}} to ${{steps.bump.outputs.NEW_VERSION}} [skip ci]"
           commit_user_name: ${{github.actor}}
           commit_user_email: "${{github.actor}}@users.noreply.github.com"
-          file_pattern: VERSION
+          file_pattern: VERSION CHANGELOG.md
