@@ -38,7 +38,7 @@ jobs:
       - name: Create branch version-bump if does not exist
         if: ${{ failure() && steps.fetch_branch.conclusion == 'failure' }}
         run: |
-          git checkout -d version-bump
+          git checkout -b version-bump
 
       - name: 'Checkout version-bump branch'
         id: current_branch
