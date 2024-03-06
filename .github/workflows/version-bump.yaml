@@ -40,10 +40,6 @@ jobs:
       - name: Update Version to version-bump Branch
         run: echo "${{steps.bump.outputs.NEW_VERSION}}" > VERSION
 
-      - name: Update Version to version-bump Branch
-        run: bash ./.ci_steps/update-version.sh ${{steps.bump.outputs.OLD_VERSION}} ${{steps.bump.outputs.NEW_VERSION}}
-        id: update
-
       - name: Print Bump Results
         run: |
           echo "New Version: ${{steps.bump.outputs.NEW_VERSION}}"
